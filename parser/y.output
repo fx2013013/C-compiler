@@ -1,0 +1,1220 @@
+终端机在文法中未使用
+
+   ANNOTATION
+   MULTI_LINE_ANNOTATION
+
+
+状态 97冲突：1 项偏移/归约
+
+
+语法
+
+    0 $accept: program $end
+
+    1 program: declaration_list
+
+    2 declaration_list: declaration_list declaration
+    3                 | declaration
+
+    4 declaration: var_declaration
+    5            | fun_declaration
+
+    6 var_declaration: type_specifier ID SEMICOLON
+    7                | type_specifier ID L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON
+
+    8 type_specifier: INT
+    9               | VOID
+
+   10 fun_declaration: type_specifier ID L_PARENTHESIS params R_PARENTHESIS
+   11                | compound_stmt
+
+   12 params: param_list
+   13       | VOID
+
+   14 param_list: param_list COMMA param
+   15           | param
+
+   16 param: type_specifier ID
+   17      | type_specifier ID L_SQUARE_BRACKET R_SQUARE_BRACKET
+
+   18 compound_stmt: L_BRACE local_declarations statement_list R_BRACE
+
+   19 local_declarations: local_declarations var_declaration
+   20                   | %empty
+
+   21 statement_list: statement_list statement
+   22               | %empty
+
+   23 statement: expression_stmt
+   24          | compound_stmt
+   25          | selection_stmt
+   26          | iteration_stmt
+   27          | return_stmt
+
+   28 expression_stmt: expression SEMICOLON
+   29                | SEMICOLON
+
+   30 selection_stmt: IF L_PARENTHESIS expression R_PARENTHESIS statement ELSE statement
+   31               | IF L_PARENTHESIS expression R_PARENTHESIS statement
+
+   32 iteration_stmt: WHILE L_PARENTHESIS expression R_PARENTHESIS statement
+
+   33 return_stmt: RETURN SEMICOLON
+   34            | RETURN expression SEMICOLON
+
+   35 expression: var EQUAL expression
+   36           | simple_expression
+
+   37 var: ID
+   38    | ID L_SQUARE_BRACKET expression R_SQUARE_BRACKET
+
+   39 simple_expression: additive_expression relop additive_expression
+   40                  | additive_expression
+
+   41 relop: LESS_EQUAL_THAN
+   42      | LESS_THAN
+   43      | GREAT_THAN
+   44      | GREAT_EQUAL_THAN
+   45      | DOUBLE_EQUAL
+   46      | NOT_EQUAL
+
+   47 additive_expression: additive_expression addop term
+   48                    | term
+
+   49 addop: ADD
+   50      | SUB
+
+   51 term: term mulop factor
+   52     | factor
+
+   53 mulop: MUL
+   54      | DIV
+
+   55 factor: L_PARENTHESIS expression R_PARENTHESIS
+   56       | var
+   57       | call
+   58       | NUM
+
+   59 call: ID L_PARENTHESIS args R_PARENTHESIS
+
+   60 args: arg_list
+   61     | %empty
+
+   62 arg_list: arg_list COMMA expression
+   63         | expression
+
+
+终结语词，附有它们出现处的规则
+
+$end (0) 0
+error (256)
+ELSE (258) 30
+IF (259) 30 31
+INT (260) 8
+RETURN (261) 33 34
+VOID (262) 9 13
+WHILE (263) 32
+ADD (264) 49
+SUB (265) 50
+MUL (266) 53
+DIV (267) 54
+LESS_THAN (268) 42
+LESS_EQUAL_THAN (269) 41
+GREAT_THAN (270) 43
+GREAT_EQUAL_THAN (271) 44
+DOUBLE_EQUAL (272) 45
+NOT_EQUAL (273) 46
+EQUAL (274) 35
+SEMICOLON (275) 6 7 28 29 33 34
+COMMA (276) 14 62
+L_PARENTHESIS (277) 10 30 31 32 55 59
+R_PARENTHESIS (278) 10 30 31 32 55 59
+L_SQUARE_BRACKET (279) 7 17 38
+R_SQUARE_BRACKET (280) 7 17 38
+L_BRACE (281) 18
+R_BRACE (282) 18
+ANNOTATION (283)
+MULTI_LINE_ANNOTATION (284)
+NUM (285) 7 58
+ID (286) 6 7 10 16 17 37 38 59
+
+
+非终结语词，附有它们出现处的规则
+
+$accept (32)
+    于左侧： 0
+program (33)
+    于左侧： 1, 于右侧： 0
+declaration_list (34)
+    于左侧： 2 3, 于右侧： 1 2
+declaration (35)
+    于左侧： 4 5, 于右侧： 2 3
+var_declaration (36)
+    于左侧： 6 7, 于右侧： 4 19
+type_specifier (37)
+    于左侧： 8 9, 于右侧： 6 7 10 16 17
+fun_declaration (38)
+    于左侧： 10 11, 于右侧： 5
+params (39)
+    于左侧： 12 13, 于右侧： 10
+param_list (40)
+    于左侧： 14 15, 于右侧： 12 14
+param (41)
+    于左侧： 16 17, 于右侧： 14 15
+compound_stmt (42)
+    于左侧： 18, 于右侧： 11 24
+local_declarations (43)
+    于左侧： 19 20, 于右侧： 18 19
+statement_list (44)
+    于左侧： 21 22, 于右侧： 18 21
+statement (45)
+    于左侧： 23 24 25 26 27, 于右侧： 21 30 31 32
+expression_stmt (46)
+    于左侧： 28 29, 于右侧： 23
+selection_stmt (47)
+    于左侧： 30 31, 于右侧： 25
+iteration_stmt (48)
+    于左侧： 32, 于右侧： 26
+return_stmt (49)
+    于左侧： 33 34, 于右侧： 27
+expression (50)
+    于左侧： 35 36, 于右侧： 28 30 31 32 34 35 38 55 62 63
+var (51)
+    于左侧： 37 38, 于右侧： 35 56
+simple_expression (52)
+    于左侧： 39 40, 于右侧： 36
+relop (53)
+    于左侧： 41 42 43 44 45 46, 于右侧： 39
+additive_expression (54)
+    于左侧： 47 48, 于右侧： 39 40 47
+addop (55)
+    于左侧： 49 50, 于右侧： 47
+term (56)
+    于左侧： 51 52, 于右侧： 47 48 51
+mulop (57)
+    于左侧： 53 54, 于右侧： 51
+factor (58)
+    于左侧： 55 56 57 58, 于右侧： 51 52
+call (59)
+    于左侧： 59, 于右侧： 57
+args (60)
+    于左侧： 60 61, 于右侧： 59
+arg_list (61)
+    于左侧： 62 63, 于右侧： 60 62
+
+
+状态 0
+
+    0 $accept: . program $end
+
+    INT      偏移，并进入状态 1
+    VOID     偏移，并进入状态 2
+    L_BRACE  偏移，并进入状态 3
+
+    program           转到状态 4
+    declaration_list  转到状态 5
+    declaration       转到状态 6
+    var_declaration   转到状态 7
+    type_specifier    转到状态 8
+    fun_declaration   转到状态 9
+    compound_stmt     转到状态 10
+
+
+状态 1
+
+    8 type_specifier: INT .
+
+    $default  使用规则 8 以归约 (type_specifier)
+
+
+状态 2
+
+    9 type_specifier: VOID .
+
+    $default  使用规则 9 以归约 (type_specifier)
+
+
+状态 3
+
+   18 compound_stmt: L_BRACE . local_declarations statement_list R_BRACE
+
+    $default  使用规则 20 以归约 (local_declarations)
+
+    local_declarations  转到状态 11
+
+
+状态 4
+
+    0 $accept: program . $end
+
+    $end  偏移，并进入状态 12
+
+
+状态 5
+
+    1 program: declaration_list .
+    2 declaration_list: declaration_list . declaration
+
+    INT      偏移，并进入状态 1
+    VOID     偏移，并进入状态 2
+    L_BRACE  偏移，并进入状态 3
+
+    $default  使用规则 1 以归约 (program)
+
+    declaration      转到状态 13
+    var_declaration  转到状态 7
+    type_specifier   转到状态 8
+    fun_declaration  转到状态 9
+    compound_stmt    转到状态 10
+
+
+状态 6
+
+    3 declaration_list: declaration .
+
+    $default  使用规则 3 以归约 (declaration_list)
+
+
+状态 7
+
+    4 declaration: var_declaration .
+
+    $default  使用规则 4 以归约 (declaration)
+
+
+状态 8
+
+    6 var_declaration: type_specifier . ID SEMICOLON
+    7                | type_specifier . ID L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON
+   10 fun_declaration: type_specifier . ID L_PARENTHESIS params R_PARENTHESIS
+
+    ID  偏移，并进入状态 14
+
+
+状态 9
+
+    5 declaration: fun_declaration .
+
+    $default  使用规则 5 以归约 (declaration)
+
+
+状态 10
+
+   11 fun_declaration: compound_stmt .
+
+    $default  使用规则 11 以归约 (fun_declaration)
+
+
+状态 11
+
+   18 compound_stmt: L_BRACE local_declarations . statement_list R_BRACE
+   19 local_declarations: local_declarations . var_declaration
+
+    INT   偏移，并进入状态 1
+    VOID  偏移，并进入状态 2
+
+    $default  使用规则 22 以归约 (statement_list)
+
+    var_declaration  转到状态 15
+    type_specifier   转到状态 16
+    statement_list   转到状态 17
+
+
+状态 12
+
+    0 $accept: program $end .
+
+    $default  接受
+
+
+状态 13
+
+    2 declaration_list: declaration_list declaration .
+
+    $default  使用规则 2 以归约 (declaration_list)
+
+
+状态 14
+
+    6 var_declaration: type_specifier ID . SEMICOLON
+    7                | type_specifier ID . L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON
+   10 fun_declaration: type_specifier ID . L_PARENTHESIS params R_PARENTHESIS
+
+    SEMICOLON         偏移，并进入状态 18
+    L_PARENTHESIS     偏移，并进入状态 19
+    L_SQUARE_BRACKET  偏移，并进入状态 20
+
+
+状态 15
+
+   19 local_declarations: local_declarations var_declaration .
+
+    $default  使用规则 19 以归约 (local_declarations)
+
+
+状态 16
+
+    6 var_declaration: type_specifier . ID SEMICOLON
+    7                | type_specifier . ID L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON
+
+    ID  偏移，并进入状态 21
+
+
+状态 17
+
+   18 compound_stmt: L_BRACE local_declarations statement_list . R_BRACE
+   21 statement_list: statement_list . statement
+
+    IF             偏移，并进入状态 22
+    RETURN         偏移，并进入状态 23
+    WHILE          偏移，并进入状态 24
+    SEMICOLON      偏移，并进入状态 25
+    L_PARENTHESIS  偏移，并进入状态 26
+    L_BRACE        偏移，并进入状态 3
+    R_BRACE        偏移，并进入状态 27
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    compound_stmt        转到状态 30
+    statement            转到状态 31
+    expression_stmt      转到状态 32
+    selection_stmt       转到状态 33
+    iteration_stmt       转到状态 34
+    return_stmt          转到状态 35
+    expression           转到状态 36
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 18
+
+    6 var_declaration: type_specifier ID SEMICOLON .
+
+    $default  使用规则 6 以归约 (var_declaration)
+
+
+状态 19
+
+   10 fun_declaration: type_specifier ID L_PARENTHESIS . params R_PARENTHESIS
+
+    INT   偏移，并进入状态 1
+    VOID  偏移，并进入状态 43
+
+    type_specifier  转到状态 44
+    params          转到状态 45
+    param_list      转到状态 46
+    param           转到状态 47
+
+
+状态 20
+
+    7 var_declaration: type_specifier ID L_SQUARE_BRACKET . NUM R_SQUARE_BRACKET SEMICOLON
+
+    NUM  偏移，并进入状态 48
+
+
+状态 21
+
+    6 var_declaration: type_specifier ID . SEMICOLON
+    7                | type_specifier ID . L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON
+
+    SEMICOLON         偏移，并进入状态 18
+    L_SQUARE_BRACKET  偏移，并进入状态 20
+
+
+状态 22
+
+   30 selection_stmt: IF . L_PARENTHESIS expression R_PARENTHESIS statement ELSE statement
+   31               | IF . L_PARENTHESIS expression R_PARENTHESIS statement
+
+    L_PARENTHESIS  偏移，并进入状态 49
+
+
+状态 23
+
+   33 return_stmt: RETURN . SEMICOLON
+   34            | RETURN . expression SEMICOLON
+
+    SEMICOLON      偏移，并进入状态 50
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 51
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 24
+
+   32 iteration_stmt: WHILE . L_PARENTHESIS expression R_PARENTHESIS statement
+
+    L_PARENTHESIS  偏移，并进入状态 52
+
+
+状态 25
+
+   29 expression_stmt: SEMICOLON .
+
+    $default  使用规则 29 以归约 (expression_stmt)
+
+
+状态 26
+
+   55 factor: L_PARENTHESIS . expression R_PARENTHESIS
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 53
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 27
+
+   18 compound_stmt: L_BRACE local_declarations statement_list R_BRACE .
+
+    $default  使用规则 18 以归约 (compound_stmt)
+
+
+状态 28
+
+   58 factor: NUM .
+
+    $default  使用规则 58 以归约 (factor)
+
+
+状态 29
+
+   37 var: ID .
+   38    | ID . L_SQUARE_BRACKET expression R_SQUARE_BRACKET
+   59 call: ID . L_PARENTHESIS args R_PARENTHESIS
+
+    L_PARENTHESIS     偏移，并进入状态 54
+    L_SQUARE_BRACKET  偏移，并进入状态 55
+
+    $default  使用规则 37 以归约 (var)
+
+
+状态 30
+
+   24 statement: compound_stmt .
+
+    $default  使用规则 24 以归约 (statement)
+
+
+状态 31
+
+   21 statement_list: statement_list statement .
+
+    $default  使用规则 21 以归约 (statement_list)
+
+
+状态 32
+
+   23 statement: expression_stmt .
+
+    $default  使用规则 23 以归约 (statement)
+
+
+状态 33
+
+   25 statement: selection_stmt .
+
+    $default  使用规则 25 以归约 (statement)
+
+
+状态 34
+
+   26 statement: iteration_stmt .
+
+    $default  使用规则 26 以归约 (statement)
+
+
+状态 35
+
+   27 statement: return_stmt .
+
+    $default  使用规则 27 以归约 (statement)
+
+
+状态 36
+
+   28 expression_stmt: expression . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 56
+
+
+状态 37
+
+   35 expression: var . EQUAL expression
+   56 factor: var .
+
+    EQUAL  偏移，并进入状态 57
+
+    $default  使用规则 56 以归约 (factor)
+
+
+状态 38
+
+   36 expression: simple_expression .
+
+    $default  使用规则 36 以归约 (expression)
+
+
+状态 39
+
+   39 simple_expression: additive_expression . relop additive_expression
+   40                  | additive_expression .
+   47 additive_expression: additive_expression . addop term
+
+    ADD               偏移，并进入状态 58
+    SUB               偏移，并进入状态 59
+    LESS_THAN         偏移，并进入状态 60
+    LESS_EQUAL_THAN   偏移，并进入状态 61
+    GREAT_THAN        偏移，并进入状态 62
+    GREAT_EQUAL_THAN  偏移，并进入状态 63
+    DOUBLE_EQUAL      偏移，并进入状态 64
+    NOT_EQUAL         偏移，并进入状态 65
+
+    $default  使用规则 40 以归约 (simple_expression)
+
+    relop  转到状态 66
+    addop  转到状态 67
+
+
+状态 40
+
+   48 additive_expression: term .
+   51 term: term . mulop factor
+
+    MUL  偏移，并进入状态 68
+    DIV  偏移，并进入状态 69
+
+    $default  使用规则 48 以归约 (additive_expression)
+
+    mulop  转到状态 70
+
+
+状态 41
+
+   52 term: factor .
+
+    $default  使用规则 52 以归约 (term)
+
+
+状态 42
+
+   57 factor: call .
+
+    $default  使用规则 57 以归约 (factor)
+
+
+状态 43
+
+    9 type_specifier: VOID .
+   13 params: VOID .
+
+    R_PARENTHESIS  使用规则 13 以归约 (params)
+    $default       使用规则 9 以归约 (type_specifier)
+
+
+状态 44
+
+   16 param: type_specifier . ID
+   17      | type_specifier . ID L_SQUARE_BRACKET R_SQUARE_BRACKET
+
+    ID  偏移，并进入状态 71
+
+
+状态 45
+
+   10 fun_declaration: type_specifier ID L_PARENTHESIS params . R_PARENTHESIS
+
+    R_PARENTHESIS  偏移，并进入状态 72
+
+
+状态 46
+
+   12 params: param_list .
+   14 param_list: param_list . COMMA param
+
+    COMMA  偏移，并进入状态 73
+
+    $default  使用规则 12 以归约 (params)
+
+
+状态 47
+
+   15 param_list: param .
+
+    $default  使用规则 15 以归约 (param_list)
+
+
+状态 48
+
+    7 var_declaration: type_specifier ID L_SQUARE_BRACKET NUM . R_SQUARE_BRACKET SEMICOLON
+
+    R_SQUARE_BRACKET  偏移，并进入状态 74
+
+
+状态 49
+
+   30 selection_stmt: IF L_PARENTHESIS . expression R_PARENTHESIS statement ELSE statement
+   31               | IF L_PARENTHESIS . expression R_PARENTHESIS statement
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 75
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 50
+
+   33 return_stmt: RETURN SEMICOLON .
+
+    $default  使用规则 33 以归约 (return_stmt)
+
+
+状态 51
+
+   34 return_stmt: RETURN expression . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 76
+
+
+状态 52
+
+   32 iteration_stmt: WHILE L_PARENTHESIS . expression R_PARENTHESIS statement
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 77
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 53
+
+   55 factor: L_PARENTHESIS expression . R_PARENTHESIS
+
+    R_PARENTHESIS  偏移，并进入状态 78
+
+
+状态 54
+
+   59 call: ID L_PARENTHESIS . args R_PARENTHESIS
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    $default  使用规则 61 以归约 (args)
+
+    expression           转到状态 79
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+    args                 转到状态 80
+    arg_list             转到状态 81
+
+
+状态 55
+
+   38 var: ID L_SQUARE_BRACKET . expression R_SQUARE_BRACKET
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 82
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 56
+
+   28 expression_stmt: expression SEMICOLON .
+
+    $default  使用规则 28 以归约 (expression_stmt)
+
+
+状态 57
+
+   35 expression: var EQUAL . expression
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 83
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 58
+
+   49 addop: ADD .
+
+    $default  使用规则 49 以归约 (addop)
+
+
+状态 59
+
+   50 addop: SUB .
+
+    $default  使用规则 50 以归约 (addop)
+
+
+状态 60
+
+   42 relop: LESS_THAN .
+
+    $default  使用规则 42 以归约 (relop)
+
+
+状态 61
+
+   41 relop: LESS_EQUAL_THAN .
+
+    $default  使用规则 41 以归约 (relop)
+
+
+状态 62
+
+   43 relop: GREAT_THAN .
+
+    $default  使用规则 43 以归约 (relop)
+
+
+状态 63
+
+   44 relop: GREAT_EQUAL_THAN .
+
+    $default  使用规则 44 以归约 (relop)
+
+
+状态 64
+
+   45 relop: DOUBLE_EQUAL .
+
+    $default  使用规则 45 以归约 (relop)
+
+
+状态 65
+
+   46 relop: NOT_EQUAL .
+
+    $default  使用规则 46 以归约 (relop)
+
+
+状态 66
+
+   39 simple_expression: additive_expression relop . additive_expression
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    var                  转到状态 84
+    additive_expression  转到状态 85
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 67
+
+   47 additive_expression: additive_expression addop . term
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    var     转到状态 84
+    term    转到状态 86
+    factor  转到状态 41
+    call    转到状态 42
+
+
+状态 68
+
+   53 mulop: MUL .
+
+    $default  使用规则 53 以归约 (mulop)
+
+
+状态 69
+
+   54 mulop: DIV .
+
+    $default  使用规则 54 以归约 (mulop)
+
+
+状态 70
+
+   51 term: term mulop . factor
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    var     转到状态 84
+    factor  转到状态 87
+    call    转到状态 42
+
+
+状态 71
+
+   16 param: type_specifier ID .
+   17      | type_specifier ID . L_SQUARE_BRACKET R_SQUARE_BRACKET
+
+    L_SQUARE_BRACKET  偏移，并进入状态 88
+
+    $default  使用规则 16 以归约 (param)
+
+
+状态 72
+
+   10 fun_declaration: type_specifier ID L_PARENTHESIS params R_PARENTHESIS .
+
+    $default  使用规则 10 以归约 (fun_declaration)
+
+
+状态 73
+
+   14 param_list: param_list COMMA . param
+
+    INT   偏移，并进入状态 1
+    VOID  偏移，并进入状态 2
+
+    type_specifier  转到状态 44
+    param           转到状态 89
+
+
+状态 74
+
+    7 var_declaration: type_specifier ID L_SQUARE_BRACKET NUM R_SQUARE_BRACKET . SEMICOLON
+
+    SEMICOLON  偏移，并进入状态 90
+
+
+状态 75
+
+   30 selection_stmt: IF L_PARENTHESIS expression . R_PARENTHESIS statement ELSE statement
+   31               | IF L_PARENTHESIS expression . R_PARENTHESIS statement
+
+    R_PARENTHESIS  偏移，并进入状态 91
+
+
+状态 76
+
+   34 return_stmt: RETURN expression SEMICOLON .
+
+    $default  使用规则 34 以归约 (return_stmt)
+
+
+状态 77
+
+   32 iteration_stmt: WHILE L_PARENTHESIS expression . R_PARENTHESIS statement
+
+    R_PARENTHESIS  偏移，并进入状态 92
+
+
+状态 78
+
+   55 factor: L_PARENTHESIS expression R_PARENTHESIS .
+
+    $default  使用规则 55 以归约 (factor)
+
+
+状态 79
+
+   63 arg_list: expression .
+
+    $default  使用规则 63 以归约 (arg_list)
+
+
+状态 80
+
+   59 call: ID L_PARENTHESIS args . R_PARENTHESIS
+
+    R_PARENTHESIS  偏移，并进入状态 93
+
+
+状态 81
+
+   60 args: arg_list .
+   62 arg_list: arg_list . COMMA expression
+
+    COMMA  偏移，并进入状态 94
+
+    $default  使用规则 60 以归约 (args)
+
+
+状态 82
+
+   38 var: ID L_SQUARE_BRACKET expression . R_SQUARE_BRACKET
+
+    R_SQUARE_BRACKET  偏移，并进入状态 95
+
+
+状态 83
+
+   35 expression: var EQUAL expression .
+
+    $default  使用规则 35 以归约 (expression)
+
+
+状态 84
+
+   56 factor: var .
+
+    $default  使用规则 56 以归约 (factor)
+
+
+状态 85
+
+   39 simple_expression: additive_expression relop additive_expression .
+   47 additive_expression: additive_expression . addop term
+
+    ADD  偏移，并进入状态 58
+    SUB  偏移，并进入状态 59
+
+    $default  使用规则 39 以归约 (simple_expression)
+
+    addop  转到状态 67
+
+
+状态 86
+
+   47 additive_expression: additive_expression addop term .
+   51 term: term . mulop factor
+
+    MUL  偏移，并进入状态 68
+    DIV  偏移，并进入状态 69
+
+    $default  使用规则 47 以归约 (additive_expression)
+
+    mulop  转到状态 70
+
+
+状态 87
+
+   51 term: term mulop factor .
+
+    $default  使用规则 51 以归约 (term)
+
+
+状态 88
+
+   17 param: type_specifier ID L_SQUARE_BRACKET . R_SQUARE_BRACKET
+
+    R_SQUARE_BRACKET  偏移，并进入状态 96
+
+
+状态 89
+
+   14 param_list: param_list COMMA param .
+
+    $default  使用规则 14 以归约 (param_list)
+
+
+状态 90
+
+    7 var_declaration: type_specifier ID L_SQUARE_BRACKET NUM R_SQUARE_BRACKET SEMICOLON .
+
+    $default  使用规则 7 以归约 (var_declaration)
+
+
+状态 91
+
+   30 selection_stmt: IF L_PARENTHESIS expression R_PARENTHESIS . statement ELSE statement
+   31               | IF L_PARENTHESIS expression R_PARENTHESIS . statement
+
+    IF             偏移，并进入状态 22
+    RETURN         偏移，并进入状态 23
+    WHILE          偏移，并进入状态 24
+    SEMICOLON      偏移，并进入状态 25
+    L_PARENTHESIS  偏移，并进入状态 26
+    L_BRACE        偏移，并进入状态 3
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    compound_stmt        转到状态 30
+    statement            转到状态 97
+    expression_stmt      转到状态 32
+    selection_stmt       转到状态 33
+    iteration_stmt       转到状态 34
+    return_stmt          转到状态 35
+    expression           转到状态 36
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 92
+
+   32 iteration_stmt: WHILE L_PARENTHESIS expression R_PARENTHESIS . statement
+
+    IF             偏移，并进入状态 22
+    RETURN         偏移，并进入状态 23
+    WHILE          偏移，并进入状态 24
+    SEMICOLON      偏移，并进入状态 25
+    L_PARENTHESIS  偏移，并进入状态 26
+    L_BRACE        偏移，并进入状态 3
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    compound_stmt        转到状态 30
+    statement            转到状态 98
+    expression_stmt      转到状态 32
+    selection_stmt       转到状态 33
+    iteration_stmt       转到状态 34
+    return_stmt          转到状态 35
+    expression           转到状态 36
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 93
+
+   59 call: ID L_PARENTHESIS args R_PARENTHESIS .
+
+    $default  使用规则 59 以归约 (call)
+
+
+状态 94
+
+   62 arg_list: arg_list COMMA . expression
+
+    L_PARENTHESIS  偏移，并进入状态 26
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    expression           转到状态 99
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 95
+
+   38 var: ID L_SQUARE_BRACKET expression R_SQUARE_BRACKET .
+
+    $default  使用规则 38 以归约 (var)
+
+
+状态 96
+
+   17 param: type_specifier ID L_SQUARE_BRACKET R_SQUARE_BRACKET .
+
+    $default  使用规则 17 以归约 (param)
+
+
+状态 97
+
+   30 selection_stmt: IF L_PARENTHESIS expression R_PARENTHESIS statement . ELSE statement
+   31               | IF L_PARENTHESIS expression R_PARENTHESIS statement .
+
+    ELSE  偏移，并进入状态 100
+
+    ELSE      [使用规则 31 以归约 (selection_stmt)]
+    $default  使用规则 31 以归约 (selection_stmt)
+
+
+状态 98
+
+   32 iteration_stmt: WHILE L_PARENTHESIS expression R_PARENTHESIS statement .
+
+    $default  使用规则 32 以归约 (iteration_stmt)
+
+
+状态 99
+
+   62 arg_list: arg_list COMMA expression .
+
+    $default  使用规则 62 以归约 (arg_list)
+
+
+状态 100
+
+   30 selection_stmt: IF L_PARENTHESIS expression R_PARENTHESIS statement ELSE . statement
+
+    IF             偏移，并进入状态 22
+    RETURN         偏移，并进入状态 23
+    WHILE          偏移，并进入状态 24
+    SEMICOLON      偏移，并进入状态 25
+    L_PARENTHESIS  偏移，并进入状态 26
+    L_BRACE        偏移，并进入状态 3
+    NUM            偏移，并进入状态 28
+    ID             偏移，并进入状态 29
+
+    compound_stmt        转到状态 30
+    statement            转到状态 101
+    expression_stmt      转到状态 32
+    selection_stmt       转到状态 33
+    iteration_stmt       转到状态 34
+    return_stmt          转到状态 35
+    expression           转到状态 36
+    var                  转到状态 37
+    simple_expression    转到状态 38
+    additive_expression  转到状态 39
+    term                 转到状态 40
+    factor               转到状态 41
+    call                 转到状态 42
+
+
+状态 101
+
+   30 selection_stmt: IF L_PARENTHESIS expression R_PARENTHESIS statement ELSE statement .
+
+    $default  使用规则 30 以归约 (selection_stmt)

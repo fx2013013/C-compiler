@@ -41,7 +41,7 @@ static char* token_strs[] = {
         "L_SQUARE_BRACKET", "R_SQUARE_BRACKET", "L_BRACE", "R_BRACE",
         "ANNOTATION", "MULTI_LINE_ANNOTATION", "NUM", "ID"
     };
-void token_error();
+void yyerror();
 %}
 
 %option yylineno
@@ -83,13 +83,13 @@ num        {digit}{digit}*
 "/*"[^*]*"*/"               { return MULTI_LINE_ANNOTATION; }
 {num}                       { return NUM; }
 {id}                        { return ID; }
-.                           { token_error(); }
+.                           { yyerror(); }
 %%
 
-void token_error()
+void yyerror()
 {
-    printf("词法错误:line%d:\t\t%s\n", yylineno, yytext);
-    exit(0);
+    printf("词法错误:line%d:\t未定义的符号:%s\n", yylineno, yytext);
+    exit(1);
 }
 
 int main() {
